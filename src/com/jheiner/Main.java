@@ -4,19 +4,26 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args) {
-        int[] lst = {4,9,7,1,3,6,5,17};
+        //int[] lst = {4,9,7,1,3,6,5};
+        int[] lst = {98,4,9,7,1,22,3,6,5,17};
+        //int[] lst = {9,5,7,3,6,2,1};   //For this array Selection sort beats Bubble sort
         //We could sort this array by simple doing:
         //Arrays.sort(lst);
         //System.out.println(Arrays.toString(lst));
         // print out [1,3,4,5,6,7,9]
 
+        //But lets do it the hard way to learn some things
         int stepCount;
 
-        //But lets do it the hard way
-        stepCount = selectionSort(lst);
-        //stepCount = bubbleSort(lst);
+        int[] ssLst = lst.clone();
+        stepCount = selectionSort(ssLst);
+        System.out.println("Selection sort: Array(" + Integer.toString(ssLst.length) + ") took "
+                + Integer.toString(stepCount) + " steps " + Arrays.toString(ssLst));
 
-        System.out.println(Arrays.toString(lst) + " array size " + Integer.toString(lst.length) + " (n) in " + Integer.toString(stepCount) + " steps");
+        int[] bsLst = lst.clone();
+        stepCount = bubbleSort(bsLst);
+        System.out.println("Bubble sort   : Array(" + Integer.toString(bsLst.length) + ") took "
+                + Integer.toString(stepCount) + " steps " + Arrays.toString(bsLst));
     }
 
     static int selectionSort(int[] lst) {
