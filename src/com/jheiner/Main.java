@@ -3,9 +3,13 @@ import java.util.Arrays;
 
 public class Main {
 
+    static int mergeSortStepCount = 0;
+    static int binarySearchStepCount = 0;
+
     public static void main(String[] args) {
-        //int[] lst = {4,9,7,1,3,6,5};
-        int[] lst = {98,4,9,7,1,22,3,6,5,17};
+        //int[] array = {4,9,7,1,3,6,5};
+        int[] array = {98,4,9,7,1,22,3,6,5,17};   //For sort algorithms
+        int[] sortedArray = {1, 3, 4, 5, 6, 7, 9, 17, 22, 98};   //For search algorithms
         //int[] lst = {9,5,7,3,6,2,1};   //For this array Selection sort beats Bubble sort
         //We could sort this array by simple doing:
         //Arrays.sort(lst);
@@ -15,15 +19,28 @@ public class Main {
         //But lets do it the hard way to learn some things
         int stepCount;
 
-        int[] ssLst = lst.clone();
+        int[] ssLst = array.clone();
         stepCount = selectionSort(ssLst);
         System.out.println("Selection sort: Array(" + Integer.toString(ssLst.length) + ") took "
                 + Integer.toString(stepCount) + " steps " + Arrays.toString(ssLst));
 
-        int[] bsLst = lst.clone();
+        // Bubble Sort - O(n^2) "O of n squared"
+        // O(1) space. That is, regardless of how big our input is, the amount of extra space it takes is constant. In this case, the amount is actually 0.
+        int[] bsLst = array.clone();
         stepCount = bubbleSort(bsLst);
         System.out.println("Bubble sort   : Array(" + Integer.toString(bsLst.length) + ") took "
                 + Integer.toString(stepCount) + " steps " + Arrays.toString(bsLst));
+
+        // Merge Sort - O(n log(n)) "O of n log n"
+        // For a large input of n, an O(n log(n)) algorithm outperforms an O(n^2) algorithm significantly, because nlog(n) grows much slower than n^2.
+        // While Merge Sort is a lot faster, it is important to note that it takes a lot more space. In Bubble Sort, we don't utilize extra space at all
+        // Space: O(n)
+        /*int[] msLst = lst.clone();
+        mergeSort(msLst);
+        System.out.println("Merge sort   : Array(" + Integer.toString(msLst.length) + ") took "
+                + Integer.toString(mergeSortStepCount) + " steps " + Arrays.toString(msLst));*/
+
+        //Binary search - O (log(n)), pass in a sorted array (faster than linear search)
     }
 
     static int selectionSort(int[] lst) {
@@ -67,4 +84,34 @@ public class Main {
         } while (swapped == true);
         return stepCount;
     }
+
+    /* Sample didn't work :(
+    static int[] mergeSort(int[] lst) {
+        //...
+
+        // recursively split and merge
+        left = mergeSort(left);
+        right = mergeSort(right);
+
+        // merge
+        return merge(left, right);
+    }
+
+    // the function for merging two sorted arrays
+    static int[] merge(int[] left, int[] right) {
+        //...
+    }*/
+
+    //static int binarySearch(int v, int[] lst, int low, int high) {
+        //...
+        //if (v == lst[middle]) {
+            //return middle;
+        //}
+        //else if (v > lst[middle]) {
+            //return binarySearch(v, lst, middle+1, high);
+        //}
+        //else {
+            //return binarySearch(v, lst, low, middle-1);
+        //}
+    //}
 }
